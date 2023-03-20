@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS relations(
     FOREIGN KEY (soulmate_id)
         REFERENCES users(id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE,
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS wishes(
@@ -32,9 +32,20 @@ CREATE TABLE IF NOT EXISTS wishes(
     FOREIGN KEY (user_id)
         REFERENCES users(id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (soulmate_id)
-        REFERENCES relations(soulmate_id)
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS soulmate_wishes(
+    id bigint GENERATED ALWAYS AS IDENTITY,
+    wish_id bigint,
+    relation_id bigint,
+    PRIMARY KEY (id),
+    FOREIGN KEY (wish_id)
+        REFERENCES wishes(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
+    FOREIGN KEY (relation_id)
+        REFERENCES relations(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );

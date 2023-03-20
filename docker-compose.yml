@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+  database:
+    container_name: database
+    image: postgres:14.7-alpine
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pass12345!
+      POSTGRES_USER: admin
+      POSTGRES_DB: db
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    depends_on:
+      - database
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.net
+      - PGADMIN_DEFAULT_PASSWORD=54321!
+    ports:
+      - "5400:80"
+
+volumes:
+  database:
