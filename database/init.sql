@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS relations(
     id bigint GENERATED ALWAYS AS IDENTITY,
-    user_id bigint,
-    soulmate_id bigint,
+    user_id bigint UNIQUE NOT NULL,
+    soulmate_id bigint UNIQUE NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY (user_id)
         REFERENCES users(id)
@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS relations(
 CREATE TABLE IF NOT EXISTS wishes(
     id bigint GENERATED ALWAYS AS IDENTITY,
     user_id bigint,
-    soulmate_id bigint,
     wish varchar(550),
     created_at timestamp DEFAULT now(),
     PRIMARY KEY (id),
@@ -49,3 +48,15 @@ CREATE TABLE IF NOT EXISTS soulmate_wishes(
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+INSERT INTO users(login, email, password) VALUES
+('Andrew', 'test1@some_email.com', '54321!'),
+('Alisa', 'test2@some_email.com', '12345!');
+
+INSERT INTO relations (user_id, soulmate_id) VALUES (1, 2);
+
+INSERT INTO wishes (user_id, wish) VALUES
+(1, 'Romantic walk on the moon'),
+(2, 'Joint movie watching');
+
+INSERT INTO soulmate_wishes (wish_id, relation_id) VALUES (1, 1);
