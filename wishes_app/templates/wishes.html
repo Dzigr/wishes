@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<main class="flex-grow-1" style="background: pink">
+<div class="container-lg mt-3d-flex flex-column" style="height: 100vh">
+  <div class="row bg-light flex-fill d-flex justify-content-start">
+    <h2 class="mt-5 mb-3">Soulmate's wishes:</h2>
+
+  <div>
+    <table class="table table-bordered table-hover mt-2">
+      <tbody>
+<!-- Отформатировать таблицу:
+  1. Задать нужну ширину столбцов
+  2. Выравнивание текста
+  3. Цвет границы ?
+  4. Цикл for
+ -->
+    <tr>
+        <th>№</th>
+        <th>Wish</th>
+        <th>Дата создания</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Вкусную шарлотку</td>
+        <td>06.04.2023</td>
+    </tr>
+          <tr>
+        <td>2</td>
+        <td>Новые носки</td>
+        <td>06.04.2023</td>
+    </tr>
+          <tr>
+        <td>1</td>
+        <td>Секс в троем</td>
+        <td>06.04.2023</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+    </div>
+    </div>
+</main>
+{% endblock %}
